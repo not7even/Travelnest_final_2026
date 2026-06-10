@@ -29,13 +29,21 @@
 
 .generator-result {
   text-align: center;
-  animation: fadeIn 0.5s ease;
 }
 
 .result-emoji {
   font-size: 4.4rem;
   margin-bottom: 15px;
-  animation: bounce 2s infinite;
+}
+
+.result-image {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin: 0 auto 20px auto;
 }
 
 .generator-result h2 {
@@ -92,15 +100,7 @@
 }
 
 
-@keyframes spin {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
-.spinning {
-  display: inline-block;
-  animation: spin 0.5s linear;
-}
 
 @media (max-width: 768px) {
   .generator-main {
