@@ -12,7 +12,6 @@
 </head>
 <body>
 
-  <!-- NAVIGATION -->
   <nav>
     <a href="index.html" class="nav-logo">Travel<span>Nest</span></a>
     <ul class="nav-links">
@@ -28,7 +27,6 @@
     </div>
   </nav>
 
-  <!-- PAGE HEADER -->
   <header class="page-header">
     <h1>Trip Budget Planner</h1>
     <p>Calculate how much your dream trip will cost</p>
@@ -36,7 +34,6 @@
 
   <main class="budget-main">
 
-    <!-- BUDGET FORM -->
     <section class="budget-form-section reveal">
       <h2>Enter Trip Details</h2>
 
@@ -61,7 +58,6 @@
       <button class="btn btn-primary" id="calculate-btn">Calculate Budget</button>
     </section>
 
-    <!-- RESULTS -->
     <section class="budget-results reveal" id="results-section" style="display:none;">
       <h2>Your Trip Summary</h2>
 
@@ -88,11 +84,12 @@
         </div>
       </div>
 
-      <!-- Progress bar -->
       <div class="progress-container">
         <p>Budget Level</p>
-        <div class="progress-bar-bg">
-          <div class="progress-bar-fill" id="progress-bar"></div>
+        <div class="budget-level-boxes">
+          <div class="budget-box" id="budget-low" data-level="low">Low</div>
+          <div class="budget-box" id="budget-moderate" data-level="moderate">Moderate</div>
+          <div class="budget-box" id="budget-luxury" data-level="luxury">Luxury</div>
         </div>
         <p id="progress-label">Low</p>
       </div>
@@ -100,7 +97,6 @@
       <button class="btn btn-secondary" id="save-budget-btn">Save This Budget</button>
     </section>
 
-    <!-- SAVED BUDGETS -->
     <section class="saved-budgets reveal" id="saved-section">
       <h2>Saved Budgets</h2>
       <div id="saved-list">
@@ -111,7 +107,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div class="footer-section">
@@ -138,7 +133,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 TravelNest. All rights reserved.</p>
+      <p>&copy; 2026 TravelNest. All rights reserved.</p>
     </div>
   </footer>
 

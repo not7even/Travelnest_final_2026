@@ -12,7 +12,6 @@
 </head>
 <body>
 
-  <!-- NAVIGATION -->
   <nav>
     <a href="index.html" class="nav-logo">Travel<span>Nest</span></a>
     <ul class="nav-links">
@@ -28,7 +27,6 @@
     </div>
   </nav>
 
-  <!-- PAGE HEADER -->
   <header class="page-header">
     <h1>Random Trip Generator</h1>
     <p>Can't decide where to go? Let us pick for you!</p>
@@ -36,7 +34,6 @@
 
   <main class="generator-main">
 
-    <!-- FILTER SECTION -->
     <section class="generator-form reveal">
       <h2>Set Your Preferences</h2>
 
@@ -64,9 +61,9 @@
       <button class="btn btn-primary" id="generate-btn"> Generate Trip</button>
     </section>
 
-    <!-- RESULT -->
     <section class="generator-result reveal" id="result-section" style="display:none;">
       <div class="result-emoji" id="result-emoji"></div>
+      <img id="result-image" src="" alt="Destination" class="result-image" style="display:none;" />
       <h2 id="result-name">Destination Name</h2>
       <p id="result-desc">Description goes here.</p>
       <p class="result-tags">
@@ -79,7 +76,6 @@
       </div>
     </section>
 
-    <!-- WISHLIST -->
     <section class="wishlist-section reveal">
       <h2> My Wishlist</h2>
       <div id="wishlist-list">
@@ -90,7 +86,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div class="footer-section">
@@ -117,11 +112,12 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 TravelNest. All rights reserved.</p>
+      <p>&copy; 2026 TravelNest. All rights reserved.</p>
     </div>
   </footer>
 
   <script src="js/global.js"></script>
+  <script src="js/destination-data.js"></script>
   <script src="js/generator.js"></script>
 </body>
 </html>
