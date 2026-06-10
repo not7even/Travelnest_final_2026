@@ -1,6 +1,4 @@
-// ===== FEEDBACK PAGE JS =====
 
-// FAQ data
 const faqData = [
   {
     q: "Is TravelNest free to use?",
@@ -28,7 +26,6 @@ const faqData = [
   }
 ];
 
-// --- Render FAQ accordion ---
 function renderFAQ() {
   const container = document.getElementById('faq-container');
 
@@ -46,18 +43,15 @@ function renderFAQ() {
     `;
     container.appendChild(div);
 
-    // Toggle on click
     const btn = div.querySelector('.accordion-header');
     const body = div.querySelector('.accordion-body');
 
     btn.addEventListener('click', function () {
       const isOpen = btn.classList.contains('open');
 
-      // Close all others first
       document.querySelectorAll('.accordion-header').forEach(b => b.classList.remove('open'));
       document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
 
-      // Open this one if it was closed
       if (!isOpen) {
         btn.classList.add('open');
         body.classList.add('open');
@@ -69,13 +63,11 @@ function renderFAQ() {
   });
 }
 
-// --- Validate and submit feedback form ---
 function submitFeedback() {
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
   const message = document.getElementById('message').value.trim();
 
-  // Clear previous errors
   document.getElementById('name-error').textContent = '';
   document.getElementById('email-error').textContent = '';
   document.getElementById('message-error').textContent = '';
@@ -99,22 +91,18 @@ function submitFeedback() {
 
   if (!valid) return;
 
-  // Save feedback to localStorage
   const feedback = { name, email, message, date: new Date().toLocaleDateString() };
   const allFeedback = JSON.parse(localStorage.getItem('feedback') || '[]');
   allFeedback.push(feedback);
   localStorage.setItem('feedback', JSON.stringify(allFeedback));
 
-  // Clear form
   document.getElementById('name').value = '';
   document.getElementById('email').value = '';
   document.getElementById('message').value = '';
 
-  // Show success message
   showMessage('form-message', 'Thank you, ' + name + '! Your message has been received.', true);
 }
 
-// --- Event listeners ---
 document.addEventListener('DOMContentLoaded', function () {
   renderFAQ();
   document.getElementById('submit-btn').addEventListener('click', submitFeedback);

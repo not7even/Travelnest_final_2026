@@ -1,11 +1,11 @@
 
 function getBudgetStatus(dailyBudget) {
   if (dailyBudget < 5000) {
-    return { label: " Low Budget", color: "#27ae60", progress: 25 };
+    return { label: " Low Budget", color: "#27ae60", level: "low" };
   } else if (dailyBudget < 15000) {
-    return { label: " Moderate", color: "#f39c12", progress: 60 };
+    return { label: " Moderate", color: "#f39c12", level: "moderate" };
   } else {
-    return { label: " Luxury", color: "#e74c3c", progress: 95 };
+    return { label: " Luxury", color: "#e74c3c", level: "luxury" };
   }
 }
 
@@ -52,25 +52,18 @@ function calculateBudget() {
   document.getElementById('result-status').style.color = status.color;
   document.getElementById('progress-label').textContent = status.label;
 
-  // Animate progress bar
-  const bar = document.getElementById('progress-bar');
-  bar.style.backgroundColor = status.color;
-  bar.style.width = '0%'; // Reset first
+  document.getElementById('budget-low').classList.remove('active');
+  document.getElementById('budget-moderate').classList.remove('active');
+  document.getElementById('budget-luxury').classList.remove('active');
+  document.getElementById('budget-' + status.level).classList.add('active');
 
-  setTimeout(function () {
-    bar.style.width = status.progress + '%';
-  }, 100);
-
-  // Show results section with animation
   const resultsSection = document.getElementById('results-section');
   resultsSection.style.display = 'block';
   resultsSection.classList.add('fade-in');
 
-  // Store current budget for saving
   window.currentBudget = { dest, days, daily, total, status: status.label };
 }
 
-// --- Save budget to localStorage ---
 function saveBudget() {
   if (!window.currentBudget) return;
 
@@ -82,7 +75,6 @@ function saveBudget() {
   renderSavedBudgets();
 }
 
-// --- Load and display saved budgets ---
 function renderSavedBudgets() {
   const budgets = JSON.parse(localStorage.getItem('saved_budgets') || '[]');
   const list = document.getElementById('saved-list');
@@ -104,7 +96,7 @@ function renderSavedBudgets() {
   });
 }
 
-// --- Clear all saved budgets ---
+
 function clearBudgets() {
   if (confirm('Are you sure you want to clear all saved budgets?')) {
     localStorage.removeItem('saved_budgets');
@@ -112,7 +104,7 @@ function clearBudgets() {
   }
 }
 
-// --- Event listeners ---
+
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('calculate-btn').addEventListener('click', calculateBudget);
   document.getElementById('save-budget-btn').addEventListener('click', saveBudget);

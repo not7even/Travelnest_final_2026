@@ -1,6 +1,4 @@
-// ===== TRAVEL MOOD JS =====
 
-// Destinations for the tracker
 const trackerDestinations = [
   { displayName: "Paris, France", searchName: "Paris" },
   { displayName: "Tokyo, Japan", searchName: "Tokyo" },
@@ -21,7 +19,6 @@ const sounds = {
 
 let activeSound = null;
 
-// --- Handle sound toggle ---
 function initSounds() {
   const buttons = document.querySelectorAll('.sound-btn');
   const status = document.getElementById('sound-status');
@@ -30,7 +27,6 @@ function initSounds() {
     btn.addEventListener('click', function () {
       const soundName = btn.dataset.sound;
 
-      // Turn off if already active
       if (btn.classList.contains('active')) {
         btn.classList.remove('active');
         status.textContent = 'No sound playing';
@@ -45,7 +41,6 @@ function initSounds() {
         sounds[activeSound].currentTime = 0;
       }
 
-      // Remove active from all other buttons
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
@@ -57,7 +52,6 @@ function initSounds() {
   });
 }
 
-// --- Load tracker state from localStorage ---
 function getTrackerState() {
   return JSON.parse(localStorage.getItem('tracker_state') || '{}');
 }
@@ -74,7 +68,6 @@ function getDestinationData(dest) {
   });
 }
 
-// --- Render the destination tracker ---
 function renderTracker() {
   const container = document.getElementById('tracker-grid');
   const state = getTrackerState();
@@ -103,11 +96,9 @@ function renderTracker() {
   updateStats(state);
 }
 
-// --- Set status for a destination ---
 function setTrackerStatus(destName, status) {
   const state = getTrackerState();
 
-  // Toggle off if same status clicked again
   if (state[destName] === status) {
     delete state[destName];
   } else {
@@ -118,7 +109,6 @@ function setTrackerStatus(destName, status) {
   renderTracker();
 }
 
-// --- Update stats numbers ---
 function updateStats(state) {
   let visited = 0;
   let planned = 0;
@@ -133,7 +123,6 @@ function updateStats(state) {
   document.getElementById('stat-wishlist').textContent = getWishlist().length;
 }
 
-// --- Reset tracker ---
 function resetTracker() {
   if (confirm('Reset all tracking data?')) {
     localStorage.removeItem('tracker_state');
@@ -141,7 +130,6 @@ function resetTracker() {
   }
 }
 
-// --- Event listeners ---
 document.addEventListener('DOMContentLoaded', function () {
   initSounds();
   renderTracker();

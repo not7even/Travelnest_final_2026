@@ -1,5 +1,4 @@
 
-// destinationData is loaded from js/destination-data.js in the page head
 
 let selectedDest = null;
 

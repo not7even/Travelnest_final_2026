@@ -7,7 +7,6 @@ const quotes = [
   "Every Journey Begins Here"
 ];
 
-// Destination of the Day is selected from shared destination data
 
 let quoteIndex = 0;
 

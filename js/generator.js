@@ -1,54 +1,42 @@
-// ===== TRIP GENERATOR JS =====
 
-// All destinations with type and budget tags
 const tripData = [
-  { name: "Bali, Indonesia", emoji: "Bali", type: "relaxation", budget: "low",
+  { name: "Bali", emoji: "Bali", type: "relaxation", budget: "low",
     desc: "Tropical paradise with rice terraces, temples, and stunning beaches." },
-  { name: "Tokyo, Japan", emoji: "Tokyo", type: "cultural", budget: "medium",
+  { name: "Tokyo", emoji: "Tokyo", type: "cultural", budget: "medium",
     desc: "A fascinating blend of ancient traditions and ultra-modern city life." },
-  { name: "Patagonia, Argentina", emoji: "Patagonia", type: "adventure", budget: "medium",
-    desc: "Dramatic mountain landscapes, glaciers, and some of the world's best trekking." },
-  { name: "Paris, France", emoji: "Paris", type: "cultural", budget: "high",
+  { name: "Paris", emoji: "Paris", type: "cultural", budget: "high",
     desc: "The city of love, art, world-class cuisine, and iconic landmarks." },
-  { name: "Costa Rica", emoji: "Costa Rica", type: "nature", budget: "low",
-    desc: "Lush rainforests, volcanoes, and incredible wildlife in Central America." },
-  { name: "New Zealand", emoji: "New Zealand", type: "adventure", budget: "high",
-    desc: "Epic landscapes from Lord of the Rings, perfect for outdoor adventures." },
-  { name: "Maldives", emoji: "Maldives", type: "relaxation", budget: "high",
-    desc: "Pristine white sand beaches and crystal-clear waters in the Indian Ocean." },
-  { name: "Morocco", emoji: "Morocco", type: "cultural", budget: "low",
-    desc: "Ancient medinas, colourful souks, and Sahara desert adventures." },
-  { name: "Norway", emoji: "Norway", type: "nature", budget: "high",
-    desc: "Stunning fjords, Northern Lights, and some of Europe's wildest landscapes." },
-  { name: "Thailand", emoji: "Thailand", type: "relaxation", budget: "low",
-    desc: "Amazing food, beautiful temples, and incredible beaches at low prices." },
-  { name: "Peru", emoji: "Peru", type: "adventure", budget: "medium",
-    desc: "Home to Machu Picchu, the Amazon rainforest, and rich Inca history." },
-  { name: "Kenya", emoji: "Kenya", type: "nature", budget: "medium",
-    desc: "World-famous safaris, the Maasai Mara, and incredible wildlife diversity." }
+  { name: "New York", emoji: "New York", type: "adventure", budget: "high",
+    desc: "The most populous city in the US. Famous for its iconic skyline, Broadway shows, and diverse culture." },
+  { name: "Sydney", emoji: "Sydney", type: "adventure", budget: "high",
+    desc: "Australia's largest city, famous for its harbour, beaches, and the iconic Opera House." },
+  { name: "Rome", emoji: "Rome", type: "cultural", budget: "high",
+    desc: "Italy's capital with nearly 3,000 years of globally influential art, architecture and culture." },
+  { name: "Bangkok", emoji: "Bangkok", type: "relaxation", budget: "low",
+    desc: "Thailand's vibrant capital, famous for ornate temples, street markets, and flavorful cuisine." },
+  { name: "Rio de Janeiro", emoji: "Rio", type: "relaxation", budget: "medium",
+    desc: "A vibrant city on Brazil's Atlantic coast known for its Carnival festival, samba and stunning beaches." },
+  { name: "Cape Town", emoji: "Cape Town", type: "nature", budget: "medium",
+    desc: "A port city on South Africa's southwest coast dominated by Table Mountain and incredible wildlife nearby." }
 ];
 
 let lastResult = null;
 
-// --- Generate a random trip ---
 function generateTrip() {
   const travelType = document.getElementById('travel-type').value;
   const budgetRange = document.getElementById('budget-range').value;
 
-  // Filter based on selections
   let filtered = tripData.filter(function (t) {
     const typeMatch = travelType === 'all' || t.type === travelType;
     const budgetMatch = budgetRange === 'all' || t.budget === budgetRange;
     return typeMatch && budgetMatch;
   });
 
-  // If nothing matches, show all
   if (filtered.length === 0) {
     alert('No destinations match your filters. Showing a random pick instead!');
     filtered = tripData;
   }
 
-  // Pick a random one
   const randomIndex = Math.floor(Math.random() * filtered.length);
   const result = filtered[randomIndex];
   lastResult = result;
@@ -56,7 +44,6 @@ function generateTrip() {
   showResult(result);
 }
 
-// --- Display the result ---
 function showResult(dest) {
   document.getElementById('result-emoji').textContent = dest.emoji;
   document.getElementById('result-name').textContent = dest.name;
@@ -64,26 +51,27 @@ function showResult(dest) {
   document.getElementById('result-type-tag').textContent = capitalise(dest.type);
   document.getElementById('result-budget-tag').textContent = capitalise(dest.budget) + ' budget';
 
+  const matchedDest = destinationData.find(function (d) {
+    return d.name === dest.name;
+  });
+
+  if (matchedDest) {
+    const resultImage = document.getElementById('result-image');
+    resultImage.src = matchedDest.image;
+    resultImage.alt = dest.name;
+    resultImage.style.display = 'block';
+  }
+
   const section = document.getElementById('result-section');
   section.style.display = 'block';
 
-  // Spin the emoji for fun
-  const emoji = document.getElementById('result-emoji');
-  emoji.classList.add('spinning');
-  setTimeout(function () {
-    emoji.classList.remove('spinning');
-  }, 500);
-
-  // Scroll to result
   section.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// Simple helper to capitalise first letter
 function capitalise(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// --- Render wishlist from localStorage ---
 function renderWishlist() {
   const list = getWishlist();
   const container = document.getElementById('wishlist-list');
@@ -105,7 +93,6 @@ function renderWishlist() {
   });
 }
 
-// --- Remove one item from wishlist ---
 function removeFromWishlist(index) {
   const list = getWishlist();
   list.splice(index, 1);
@@ -113,7 +100,6 @@ function removeFromWishlist(index) {
   renderWishlist();
 }
 
-// --- Event listeners ---
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('generate-btn').addEventListener('click', generateTrip);
 

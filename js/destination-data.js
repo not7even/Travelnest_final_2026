@@ -1,4 +1,3 @@
-// Shared destination data used across multiple pages
 const destinationData = [
   {
     name: "Paris", country: "France", continent: "Europe",

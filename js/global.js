@@ -1,7 +1,4 @@
-// ===== GLOBAL JS - TravelNest =====
-// Reusable functions shared across all pages
 
-// --- Hamburger menu toggle ---
 function initNav() {
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
@@ -13,7 +10,6 @@ function initNav() {
     });
   }
 
-  // Highlight active page link
   const links = document.querySelectorAll('.nav-links a');
   links.forEach(link => {
     if (link.href === window.location.href) {
@@ -22,7 +18,6 @@ function initNav() {
   });
 }
 
-// --- Scroll reveal animation ---
 function initScrollReveal() {
   const elements = document.querySelectorAll('.reveal');
 
@@ -37,7 +32,6 @@ function initScrollReveal() {
   elements.forEach(el => observer.observe(el));
 }
 
-// --- Footer newsletter form ---
 function initNewsletter() {
   const form = document.getElementById('newsletter-form');
   if (!form) return;
@@ -52,7 +46,6 @@ function initNewsletter() {
       return;
     }
 
-    // Save to localStorage
     let emails = JSON.parse(localStorage.getItem('newsletter_emails') || '[]');
     if (!emails.includes(email)) {
       emails.push(email);
@@ -64,7 +57,6 @@ function initNewsletter() {
   });
 }
 
-// --- Show a simple toast/message ---
 function showMessage(containerId, message, isSuccess = true) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -73,23 +65,19 @@ function showMessage(containerId, message, isSuccess = true) {
   container.className = isSuccess ? 'success-msg' : 'error-msg';
   container.style.display = 'block';
 
-  // Auto-hide after 4 seconds
   setTimeout(() => {
     container.style.display = 'none';
   }, 4000);
 }
 
-// --- Get wishlist from localStorage ---
 function getWishlist() {
   return JSON.parse(localStorage.getItem('wishlist') || '[]');
 }
 
-// --- Save wishlist to localStorage ---
 function saveWishlist(list) {
   localStorage.setItem('wishlist', JSON.stringify(list));
 }
 
-// --- Add destination to wishlist ---
 function addToWishlist(destName) {
   const list = getWishlist();
   if (!list.includes(destName)) {
@@ -101,7 +89,6 @@ function addToWishlist(destName) {
   }
 }
 
-// --- Run on every page load ---
 document.addEventListener('DOMContentLoaded', function () {
   initNav();
   initScrollReveal();
