@@ -34,6 +34,7 @@
 .result-emoji {
   font-size: 4.4rem;
   margin-bottom: 15px;
+  font-weight: bold;
 }
 
 .result-image {
